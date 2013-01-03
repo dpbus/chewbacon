@@ -4,7 +4,7 @@ default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
 set :application, 'weight'
-set :domain,      'lbs.essub.com'
+set :domain,      'essub.com'
 
 set :scm, :git
 set :repository,  'git@github.com:dpbus/weight.git'
@@ -36,8 +36,7 @@ namespace :deploy do
   end
 
   task :setup_config, roles: :app do
-    sudo "ln -nfs #{current_path}/config/nginx.conf /opt/nginx/conf/sites/#{application}.conf"
-    sudo "ln -nfs #{current_path}/config/lv_htpasswd /opt/nginx/conf/"
+    sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/conf.d/#{application}.conf"
     sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
   end
 
