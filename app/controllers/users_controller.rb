@@ -19,5 +19,6 @@ class UsersController < ApplicationController
   def show
     @user = current_user
     @weigh_ins = current_user.weigh_ins
+    @groups = @user.groups
   end
 end

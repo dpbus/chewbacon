@@ -6,4 +6,4 @@
 <% end %>
 </ul>
 
-<%= content_tag :div, "", id: "weight-chart", data: { weight: @weigh_ins } %>
+<%= content_tag :div, "", id: "group-weight-chart", data: { weight: @group.chart_data[:data], ykeys: @group.chart_data[:keys] } %>

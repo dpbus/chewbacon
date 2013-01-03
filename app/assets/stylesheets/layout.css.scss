@@ -98,7 +98,7 @@ textarea {
   }
 }
 
-button.fancy {
+.fancy {
   font-size: 1em;
 	color: #fff; 
 	background: darkblue image-url('button-overlay.png') repeat-x; 
@@ -110,10 +110,10 @@ button.fancy {
   @include box-shadow(0 1px 3px rgba(0,0,0,0.5));
 	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
 	cursor: pointer;
-  
   &:hover	{ 
     background-color: blue; 
     color: #fff; 
+    text-decoration: none;
   }
   
   &:active { top: 1px; }

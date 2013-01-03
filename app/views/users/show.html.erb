@@ -2,6 +2,15 @@
 
 <%= content_tag :div, "", id: "weight-chart", data: { weight: @weigh_ins } %>
 
-<div>
-	<%= link_to "+ Record new weight", new_weigh_in_path %>
+<div id="new-weight-link">
+	<%= link_to "+ Record new weight", new_weigh_in_path, class: "fancy" %>
 </div>
+
+<% unless @groups.empty? %>
+<h2>Groups</h2>
+<ul>
+  <% @groups.each do |g| %>
+  <li><%= link_to g.name, group_path(g) %></li>
+  <% end %>
+</ul>
+<% end %>
