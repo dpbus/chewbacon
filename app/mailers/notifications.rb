@@ -11,4 +11,3 @@ class Notifications < ActionMailer::Base
     mail to: user.email, subject: "[lbs.essub.com] Password Reset"
   end
 end
-end
