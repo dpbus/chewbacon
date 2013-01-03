@@ -1,0 +1,13 @@
+<% title 'Forgot your password?' %>
+
+<p>No worries! Just enter your email address below and we'll send you instructions on how to reset it.</p>
+
+<%= form_tag password_resets_path, :method => :post do %>
+  <div class="field">
+    <%= label_tag :email, nil, class: "visually-hidden" %>
+    <%= text_field_tag :email, params[:email], placeholder: "Email" %>
+  </div>
+  <div class="actions">
+    <%= button_tag "Reset Password", class: "fancy" %>
+  </div>
+<% end %>

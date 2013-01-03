@@ -1,0 +1,16 @@
+<% title 'Password Reset' %>
+
+<%= form_for @user, url: password_reset_path(params[:id]) do |f| %>
+  <div class="field">
+    <%= f.label :password, "New Password", class: "visually-hidden" %>
+    <%= f.password_field :password, placeholder: "New Password" %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirm Password", class: "visually-hidden" %>
+    <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update Password" %>
+  </div>
+<% end %>

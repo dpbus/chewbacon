@@ -1,0 +1,29 @@
+<% title "Register" %>
+
+<%= form_for @user do |f| %>
+  <%= f.error_messages %>
+
+  <div class="field">
+     <%= f.label :name %>
+     <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+    <div class="hint">
+      We'll never share your email address with anyone.
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirm Password" %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <div class="actions">
+    <%= f.button "Register &raquo;".html_safe, class: "fancy" %>
+  </div>
+<% end %>

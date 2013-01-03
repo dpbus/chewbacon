@@ -1,0 +1,9 @@
+<% title @group.name %>
+
+<ul>
+<% @group.users.each do |u| %>
+  <li><%= u.name %></li>
+<% end %>
+</ul>
+
+<%= content_tag :div, "", id: "weight-chart", data: { weight: @weigh_ins } %>

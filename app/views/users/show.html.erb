@@ -1,0 +1,7 @@
+<% title "#{@user.name.possessive} Progress" %>
+
+<%= content_tag :div, "", id: "weight-chart", data: { weight: @weigh_ins } %>
+
+<div>
+	<%= link_to "+ Record new weight", new_weigh_in_path %>
+</div>
