@@ -4,7 +4,7 @@ default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
 set :application, 'weight'
-set :domain,      'nohip.com'
+set :domain,      'chewbacon.com'
 
 set :scm, :git
 set :repository,  'git@github.com:dpbus/weight.git'
