@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :require_no_user, except: :show
-  before_filter :require_user, only: :show
+  before_filter :require_no_user, only: [:new, :create]
+  before_filter :require_user, only: [:show, :edit, :update]
 
   def new
     @user = User.new
@@ -20,5 +20,18 @@ class UsersController < ApplicationController
     @user = current_user
     @weigh_ins = current_user.weigh_ins
     @groups = @user.groups
+  end
+  
+  def edit
+    @user = current_user
+  end
+  
+  def update
+    @user = current_user
+    if @user.update_attributes(params[:user])
+      redirect_to @user, notice: "Account updated successfully!"
+    else
+      render :edit
+    end
   end
 end

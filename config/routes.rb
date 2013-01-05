@@ -5,6 +5,7 @@ Weightbot::Application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
   post 'authenticate' => 'sessions#create'
+  get 'account', to: 'users#edit', as: 'account'
   
   resources :users
   resources :sessions

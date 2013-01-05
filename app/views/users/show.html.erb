@@ -1,5 +1,9 @@
 <% title "#{@user.name.possessive} Progress" %>
 
+<div id="edit-account">
+  <%= link_to "Edit Account", account_path %>
+</div>
+
 <%= content_tag :div, "", id: "weight-chart", data: { weight: @weigh_ins } %>
 
 <div id="new-weight-link">
