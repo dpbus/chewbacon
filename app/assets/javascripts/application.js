@@ -15,4 +15,5 @@
 //= require jquery-ui
 //= require rafael
 //= require morris
+//= require chosen-jquery
 //= require_tree .

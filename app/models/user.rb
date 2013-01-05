@@ -31,4 +31,8 @@ class User < ActiveRecord::Base
   def self.find_by_email(email)
     where('lower(email) = ?', email.downcase).first
   end
+  
+  def name_and_email
+    "#{name} (#{email})"
+  end
 end

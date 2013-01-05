@@ -12,4 +12,5 @@ jQuery ->
       ymin: 'auto'
       postUnits: ' lbs'
       smooth: false
-      
+  
+  $('#group_user_ids').chosen()

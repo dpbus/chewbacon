@@ -26,6 +26,14 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def require_admin
+    unless current_user && current_user.admin
+      store_location
+      redirect_to login_url
+      return false
+    end
+  end
+  
   def store_location
     session[:return_to] = request.fullpath
   end

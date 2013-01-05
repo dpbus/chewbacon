@@ -7,3 +7,9 @@
 </ul>
 
 <%= content_tag :div, "", id: "group-weight-chart", data: { weight: @group.chart_data[:data], ykeys: @group.chart_data[:keys] } %>
+
+<% if current_user.admin %>
+<div>
+  <%= link_to "Edit group", edit_group_path(@group) %>
+</div>
+<% end %>

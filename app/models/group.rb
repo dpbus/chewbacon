@@ -1,7 +1,7 @@
 class Group < ActiveRecord::Base
   has_many :memberships
   has_many :users, through: :memberships
-  attr_accessible :name
+  attr_accessible :name, :user_ids
   
   def chart_data
     weigh_ins = WeighIn.where(user_id: users).order(:date)
