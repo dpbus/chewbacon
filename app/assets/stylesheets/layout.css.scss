@@ -13,8 +13,6 @@
 html, body { margin: 0; padding: 0; width: 100%; }
 
 body {
-  margin: 0;
-  padding: 0;
   font-size: 13px;
   line-height: 18px;
   color: #333333;
@@ -122,13 +120,14 @@ textarea {
 header {
   min-width: 982px;
   background: #232323;
-  height: 60px;
+  height: 50px;
   color: #AAAAAA;
   
   #header-container {
     width: 980px;
+    height: 50px;
     margin: 0 auto;
-    padding: 10px 0;
+//    padding: 10px 0;
     font-weight: 300;
     
     #main-logo {
@@ -144,22 +143,57 @@ header {
       }
     }
     
-    nav { 
-      display: inline-block; 
-      ul {
+    nav {
+      float: right;
+      margin-top: -5px;
+      ul#main-nav {
+        @include border-radius(5px);
+        background: #333333;
+        border: 1px solid #111;
         padding: 0;
-        margin: 0 0 0 20px;
+        
+        li:first-child a { 
+          @include border-radius(5px 0 0 5px);
+        }
+        li:last-child a { 
+          @include border-radius(0 5px 5px 0); 
+          border-right: none;
+          
+        }
+        
         li {
-          margin-left: 20px;
-          line-height: 40px;
           display: inline-block;
+          a {
+            display: block;
+            border-right: 1px solid #232323;
+            margin: 0;
+            padding: 7px 15px;
+          }
         }
       }
-    }
-    
-    #user-nav { 
-      float: right;
-      li { margin: 0 5px; }
+      
+      li.hover, li > a:hover {
+        background: #4A4A49;
+      }
+      li#users-groups-menu {
+        position: relative;
+        ul#users-groups-nav {
+          padding: 0;
+          visibility: hidden;
+          width: 135px;
+          position: absolute; 
+          top: 100%; 
+          left: 0;
+          background: #333;
+          border: 1px solid #111;
+          @include border-radius(0 5px 5px 5px);
+          
+          li { 
+            display: block; 
+            a { @include border-radius(0 5px 5px 0); }
+          }
+        }
+      }
     }
   }
 }

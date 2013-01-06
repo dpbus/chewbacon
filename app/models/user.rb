@@ -35,4 +35,17 @@ class User < ActiveRecord::Base
   def name_and_email
     "#{name} (#{email})"
   end
+  
+  def weight_delta
+    start = weigh_ins.order(:date).first.weight
+    latest = weigh_ins.order(:date).last.weight
+    
+    latest - start
+  end
+  
+  def weight_delta_percent
+    start = weigh_ins.order(:date).first.weight
+    
+    (100*weight_delta/start).round(2)
+  end
 end

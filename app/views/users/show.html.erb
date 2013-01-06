@@ -4,6 +4,16 @@
   <%= link_to "Edit Account", account_path %>
 </div>
 
+<div id="delta">
+  <% if @user.weight_delta > 0 %>
+  Boo! You've gained <%= @user.weight_delta %> lbs. (<%= @user.weight_delta_percent %>%).
+  <% elsif @user.weight_delta == 0 %>
+    No progress yet. You've lost 0 lbs.
+  <% else %>
+    Nice work! You've lost <%= @user.weight_delta.abs %> lbs. (<%= @user.weight_delta_percent.abs %>%).
+  <% end %>
+</div>
+
 <%= content_tag :div, "", id: "weight-chart", data: { weight: @weigh_ins } %>
 
 <div id="new-weight-link">

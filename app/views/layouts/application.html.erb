@@ -13,15 +13,23 @@
         <h1><%= link_to "Weight Tracker", root_path %></h1>
       </div>
       <nav id="user-nav">
-        <ul>
+        <ul id="main-nav">
         <% if current_user %>
-          <li>Hello, <%= current_user.name %></li>
-          &bull;
-          <li><%= link_to "Log Out", logout_path %></li>
+          <li><%= link_to "Home", root_path %></li><li id="users-groups-menu" >
+            <%= link_to "Groups", "#" %>
+            <ul id="users-groups-nav">
+              <% current_user.groups.each do |group| %>
+                <li><%= link_to group.name, group %></li>
+              <% end %>
+              <% if current_user.admin %>
+                <li><%= link_to "+ New Group", new_group_path %></li>
+              <% end %>
+            </ul>
+          </li><li>
+              <%= link_to "Log Out", logout_path %>
+            </li>
         <% else %>
-          <li><%= link_to "Log In", login_path %></li>
-          &bull;
-          <li><%= link_to "Register", register_path %></li>
+          <li><%= link_to "Log In", login_path %></li><li><%= link_to "Register", register_path %></li>
         <% end %>
         </ul>
       </nav>
