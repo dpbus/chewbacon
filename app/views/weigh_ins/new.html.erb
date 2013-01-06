@@ -1,21 +1,3 @@
 <% title "Weigh In" %>
 
-<%= form_for @weigh_in do |f| %>
-  <%= f.error_messages %>
-
-  <div class="field">
-     <%= f.label :date %>
-     <% if @weigh_in.date.nil? %>
-     <%= f.text_field :date, class: "date-picker" %>
-    <% else %>
-      <%= f.text_field :date, value: @weigh_in.date.strftime('%Y-%m-%d'), class: "date-picker" %>
-    <% end %>
-  </div>
-  <div class="field">
-    <%= f.label :weight %>
-    <%= f.text_field :weight %>
-  </div>
-  <div class="actions">
-    <%= f.button "Save &raquo;".html_safe, class: "fancy" %>
-  </div>
-<% end %>
+<%= render 'form' %>

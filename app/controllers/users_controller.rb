@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   
   def show
     @user = current_user
-    @weigh_ins = current_user.weigh_ins
+    @weigh_ins = current_user.weigh_ins.order(:date)
     @groups = @user.groups
   end
   

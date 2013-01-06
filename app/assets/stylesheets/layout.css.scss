@@ -201,8 +201,11 @@ header {
 // Default table layout
 table {
   border-collapse: collapse;
-  width: 100%;
   th {
+    border: 1px solid #111; 
+    padding: 5px 10px; 
+    background: #4A4A49;
+    color: #EFEFEF;
     text-align: left; 
     font-weight: 300;
     margin: 0;
@@ -213,7 +216,7 @@ table {
     font-weight: bold;
   }
   td { 
-    padding: 5px; 
+    padding: 5px 10px; 
     border: 1px solid #DFDFDF; 
     img { vertical-align: top; }
   }
