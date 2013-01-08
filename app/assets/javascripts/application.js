@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= html5shiv
 //= require rafael
 //= require morris
 //= require chosen-jquery

@@ -4,6 +4,7 @@
   <%= link_to "Edit Account", account_path %>
 </div>
 
+<% if !@weigh_ins.empty? %>
 <div id="delta">
   <% if @user.weight_delta > 0 %>
   Boo! You've gained <%= @user.weight_delta %> lbs. (<%= @user.weight_delta_percent %>%).
@@ -13,13 +14,14 @@
     Nice work! You've lost <%= @user.weight_delta.abs %> lbs. (<%= @user.weight_delta_percent.abs %>%).
   <% end %>
 </div>
-
+<% end %>
 <%= content_tag :div, "", id: "weight-chart", data: { weight: @weigh_ins } %>
 
 <div id="new-weight-link">
 	<%= link_to "+ Record new weight", new_weigh_in_path, class: "fancy" %>
 </div>
 
+<% if !@weigh_ins.empty? %>
 <table id="weigh-ins">
   <tr>
     <th>Date</th>
@@ -37,6 +39,7 @@
   </tr>
   <% end %>
 </table>
+<% end %>
 
 <% unless @groups.empty? %>
 <h2>Groups</h2>
