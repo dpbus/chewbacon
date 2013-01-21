@@ -1,10 +1,19 @@
 <% title @group.name %>
 
-<ul>
+<table>
+  <tr>
+    <th>User</th>
+    <th>lbs</th>
+    <th>%</th>
+  </tr>
 <% @group.users.each do |u| %>
-  <li><%= u.name %></li>
+  <tr>
+    <td><%= u.name %></td>
+    <td><%= u.weight_delta %> lbs</td>
+    <td><%= u.weight_delta_percent %>%</td>
+  </tr>
 <% end %>
-</ul>
+</table>
 
 <%= content_tag :div, "", id: "group-weight-chart", data: { weight: @group.chart_data[:data], ykeys: @group.chart_data[:keys] } %>
 
