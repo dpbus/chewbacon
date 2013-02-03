@@ -1,5 +1,17 @@
 <% title @group.name %>
 
+
+<%= form_tag(@group, :method => :get) do %>
+  <%= label_tag "Start" %>:
+  <%= select_tag("start_date", options_from_collection_for_select(@group.distinct_dates, :value_date, :display_date), { :include_blank => true, :default => params[:start_date] }) %>
+  <%= label_tag "End" %>:
+  <%= select_tag("end_date", options_from_collection_for_select(@group.distinct_dates, 
+  :value_date, :display_date), { :include_blank => true, :default => params[:end_date] }) %>
+  <%= button_tag "Update" %>
+<% end %>
+
+<br/>
+
 <table>
   <tr>
     <th>User</th>
@@ -9,8 +21,22 @@
 <% @group.users.each do |u| %>
   <tr>
     <td><%= u.name %></td>
-    <td><%= u.weight_delta %> lbs</td>
-    <td><%= u.weight_delta_percent %>%</td>
+    <td>
+      <% if params[:start_date] %>
+        <%= u.weight_delta(params[:start_date],params[:end_date]) %>  
+      <% else  %>
+        <%= u.weight_delta %>
+      <% end %>
+    lbs
+    </td>
+    <td>
+      <% if params[:start_date] %>
+        <%= u.weight_delta_percent(params[:start_date],params[:end_date]) %>  
+      <% else  %>
+        <%= u.weight_delta_percent %>
+      <% end %>
+    %
+    </td>
   </tr>
 <% end %>
 </table>

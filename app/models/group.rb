@@ -19,4 +19,16 @@ class Group < ActiveRecord::Base
     end
     { data: output, keys: keys.uniq }
   end
+  
+  def distinct_dates
+    distinct_dates = Group.joins(:users => :weigh_ins).select("weigh_ins.date").where(:id => id).uniq
+  end
+  
+  def display_date
+    date.to_date.strftime('%B %d %Y')
+  end
+  
+  def value_date
+    date.to_date.strftime('%Y-%m-%d')
+  end
 end
