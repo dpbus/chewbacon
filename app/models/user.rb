@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
     if (end_date.nil?)
       latest = weigh_ins.order(:date).last.weight
     else
-      latest = weigh_ins.order(:date).where("date <= ?", end_date.to_date.strftime("%Y-%m-%d %H:%M:%S.1")).last.weight
+      latest = weigh_ins.order(:date).where("date <= ?", end_date.to_date.end_of_day).last.weight
     end
     
     latest - start

@@ -1,12 +1,10 @@
 <% title @group.name %>
 
-
 <%= form_tag(@group, :method => :get) do %>
-  <%= label_tag "Start" %>:
-  <%= select_tag("start_date", options_from_collection_for_select(@group.distinct_dates, :value_date, :display_date), { :include_blank => true, :default => params[:start_date] }) %>
-  <%= label_tag "End" %>:
-  <%= select_tag("end_date", options_from_collection_for_select(@group.distinct_dates, 
-  :value_date, :display_date), { :include_blank => true, :default => params[:end_date] }) %>
+  <%= label_tag "start_date", "Start" %>:
+  <%= select_tag("start_date", options_from_collection_for_select(WeighIn.weigh_ins_from_group(@group.id), :date, :display_date, params[:start_date]), { :include_blank => true }) %>
+  <%= label_tag "end_date", "End" %>:
+  <%= select_tag("end_date", options_from_collection_for_select(WeighIn.weigh_ins_from_group(@group.id), :date, :display_date, params[:end_date]), { :include_blank => true }) %>
   <%= button_tag "Update" %>
 <% end %>
 
@@ -22,18 +20,18 @@
   <tr>
     <td><%= u.name %></td>
     <td>
-      <% if params[:start_date] %>
-        <%= u.weight_delta(params[:start_date],params[:end_date]) %>  
-      <% else  %>
+      <% if params[:start_date].empty? %>
         <%= u.weight_delta %>
+      <% else  %>
+        <%= u.weight_delta(params[:start_date],params[:end_date]) %>          
       <% end %>
     lbs
     </td>
     <td>
-      <% if params[:start_date] %>
-        <%= u.weight_delta_percent(params[:start_date],params[:end_date]) %>  
-      <% else  %>
+      <% if params[:start_date].empty? %>
         <%= u.weight_delta_percent %>
+      <% else  %>
+        <%= u.weight_delta_percent(params[:start_date],params[:end_date]) %>  
       <% end %>
     %
     </td>

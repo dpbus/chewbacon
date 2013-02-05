@@ -6,4 +6,14 @@ class WeighIn < ActiveRecord::Base
   validates :date, presence: true
   validates :weight, numericality: true
   validates :date, uniqueness: { scope: :user_id, message: "already has a weight recorded for it" }
+
+  def self.weigh_ins_from_group(group_id)
+    WeighIn.joins(:user => :groups).where("groups.id = ?", group_id).order("date ASC").uniq
+  end
+  
+  def display_date
+    date.to_date.strftime('%B %d %Y')
+  end
+
 end
+
