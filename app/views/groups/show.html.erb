@@ -5,7 +5,7 @@
   <%= select_tag("start_date", options_from_collection_for_select(WeighIn.weigh_ins_from_group(@group.id), :date, :display_date, params[:start_date]), { :include_blank => true }) %>
   <%= label_tag "end_date", "End" %>:
   <%= select_tag("end_date", options_from_collection_for_select(WeighIn.weigh_ins_from_group(@group.id), :date, :display_date, params[:end_date]), { :include_blank => true }) %>
-  <%= button_tag "Update" %>
+  <%= button_tag "Update", :id => "filter_button" %>
 <% end %>
 
 <br/>
@@ -20,7 +20,7 @@
   <tr>
     <td><%= u.name %></td>
     <td>
-      <% if params[:start_date].empty? %>
+      <% if params[:start_date].nil? || params[:start_date].empty? %>
         <%= u.weight_delta %>
       <% else  %>
         <%= u.weight_delta(params[:start_date],params[:end_date]) %>          
@@ -28,7 +28,7 @@
     lbs
     </td>
     <td>
-      <% if params[:start_date].empty? %>
+      <% if params[:start_date].nil? || params[:start_date].empty? %>
         <%= u.weight_delta_percent %>
       <% else  %>
         <%= u.weight_delta_percent(params[:start_date],params[:end_date]) %>  

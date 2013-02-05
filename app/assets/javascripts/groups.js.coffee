@@ -13,3 +13,12 @@ jQuery ->
       postUnits: ' lbs'
   
   $('#group_user_ids').chosen()
+
+jQuery ->
+  $('#filter_button').click ->
+    if $('#start_date').val() >= $('#end_date').val()
+      alert('The start value selected is greater than equal to the end date. Try again.');
+      return false;
+    else
+      return true;
+      
