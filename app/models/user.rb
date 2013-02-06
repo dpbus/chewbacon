@@ -37,29 +37,32 @@ class User < ActiveRecord::Base
   end
   
   def weight_delta(start_date = nil, end_date = nil)
-    if (start_date.nil?)
-      start = weigh_ins.order(:date).first.weight
-    else
-      start = weigh_ins.order(:date).where("date >= ?", start_date).first.weight
+    if (weigh_ins.count > 0)
+      if (start_date.nil?)
+        start = weigh_ins.order(:date).first.weight
+      else
+        start = weigh_ins.order(:date).where("date >= ?", start_date).first.weight
+      end
+      
+      if (end_date.nil?)
+        latest = weigh_ins.order(:date).last.weight
+      else
+        latest = weigh_ins.order(:date).where("date <= ?", end_date.to_date.end_of_day).last.weight
+      end
+      
+      latest - start
     end
-    
-    if (end_date.nil?)
-      latest = weigh_ins.order(:date).last.weight
-    else
-      latest = weigh_ins.order(:date).where("date <= ?", end_date.to_date.end_of_day).last.weight
-    end
-    
-    latest - start
   end
   
   def weight_delta_percent(start_date = nil, end_date = nil)
-    if (start_date.nil?)
-      start = weigh_ins.order(:date).first.weight
-    else
-      start = weigh_ins.order(:date).where("date >= ?", start_date).first.weight
+    if (weigh_ins.count > 0)
+      if (start_date.nil?)
+        start = weigh_ins.order(:date).first.weight
+      else
+        start = weigh_ins.order(:date).where("date >= ?", start_date).first.weight
+      end      
+      
+      (100*weight_delta(start_date, end_date)/start).round(2)
     end
-    
-    
-    (100*weight_delta(start_date, end_date)/start).round(2)
   end
 end

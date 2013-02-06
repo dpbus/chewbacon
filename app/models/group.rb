@@ -19,5 +19,15 @@ class Group < ActiveRecord::Base
     end
     { data: output, keys: keys.uniq }
   end
-  
+
+  def self.shared_group(user_a, user_b)
+    groups_a = Group.joins(:users).where('user_id = ?', user_a).select('groups.id')
+    groups_b = Group.joins(:users).where('user_id = ?', user_b).select('groups.id')
+    
+    if (groups_a & groups_b).length > 0
+      return true
+    else
+      return false
+    end  
+  end
 end

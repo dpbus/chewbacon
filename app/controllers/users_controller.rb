@@ -17,8 +17,13 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user = current_user
-    @weigh_ins = current_user.weigh_ins.order(:date)
+    if ((params[:id] != current_user.id) && Group.shared_group(params[:id], current_user.id))
+      @user = User.find(params[:id])
+    else
+      @user = current_user
+    end
+    
+    @weigh_ins = @user.weigh_ins.order(:date)
     @groups = @user.groups
   end
   

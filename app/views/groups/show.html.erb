@@ -18,7 +18,7 @@
   </tr>
 <% @group.users.each do |u| %>
   <tr>
-    <td><%= u.name %></td>
+    <td><%= link_to u.name, u %></td>
     <td>
       <% if params[:start_date].nil? || params[:start_date].empty? %>
         <%= u.weight_delta %>
