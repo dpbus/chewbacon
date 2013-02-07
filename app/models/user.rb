@@ -52,6 +52,11 @@ class User < ActiveRecord::Base
       
       latest - start
     end
+    
+    rescue
+      start = 0
+      latest = 0
+    
   end
   
   def weight_delta_percent(start_date = nil, end_date = nil)

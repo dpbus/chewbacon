@@ -2,9 +2,9 @@
 
 <%= form_tag(@group, :method => :get) do %>
   <%= label_tag "start_date", "Start" %>:
-  <%= select_tag("start_date", options_from_collection_for_select(WeighIn.weigh_ins_from_group(@group.id), :date, :display_date, params[:start_date]), { :include_blank => true }) %>
+  <%= select_tag("start_date", options_from_collection_for_select(WeighIn.dates_from_group(@group.id), :date, :display_date, params[:start_date]), { :include_blank => true }) %>
   <%= label_tag "end_date", "End" %>:
-  <%= select_tag("end_date", options_from_collection_for_select(WeighIn.weigh_ins_from_group(@group.id), :date, :display_date, params[:end_date]), { :include_blank => true }) %>
+  <%= select_tag("end_date", options_from_collection_for_select(WeighIn.dates_from_group(@group.id), :date, :display_date, params[:end_date]), { :include_blank => true }) %>
   <%= button_tag "Update", :id => "filter_button" %>
 <% end %>
 
