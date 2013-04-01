@@ -1,25 +1,27 @@
 #!/bin/sh
+#
 # chkconfig:   - 85 15 
-# description: Unicorn service for the localvora site
+# description: Unicorn server for chewbacon.com
 # processname: unicorn
+#
 
 set -e
 
-TIMEOUT=${TIMEOUT-60}
 APP_ROOT=/var/www/sites/weight/current
-PID=$APP_ROOT/tmp/pids/unicorn.pid
-CMD="cd $APP_ROOT; bundle exec unicorn -D -c $APP_ROOT/config/unicorn.rb -E production"
-AS_USER=deploy
-set -u
+APP_ENV=production
 
-OLD_PIN="$PID.oldbin"
+PID=$APP_ROOT/tmp/pids/unicorn.pid
+OLD_PID="$PID.oldbin"
+
+CMD="cd $APP_ROOT; bundle exec unicorn -D -c $APP_ROOT/config/unicorn.rb -E $APP_ENV"
+AS_USER=deploy
 
 sig () {
   test -s "$PID" && kill -$1 `cat $PID`
 }
 
 oldsig () {
-  test -s $OLD_PIN && kill -$1 `cat $OLD_PIN`
+  test -s $OLD_PID && kill -$1 `cat $OLD_PID`
 }
 
 run () {
@@ -30,49 +32,36 @@ run () {
   fi
 }
 
-case "$1" in
-start)
-  sig 0 && echo >&2 "Already running" && exit 0
-  run "$CMD"
-  ;;
-stop)
-  sig QUIT && exit 0
-  echo >&2 "Not running"
-  ;;
-force-stop)
-  sig TERM && exit 0
-  echo >&2 "Not running"
-  ;;
-restart|reload)
-  sig HUP && echo reloaded OK && exit 0
-  echo >&2 "Couldn't reload, starting '$CMD' instead"
-  run "$CMD"
-  ;;
-upgrade)
-  if sig USR2 && sleep 2 && sig 0 && oldsig QUIT
-  then
-    n=$TIMEOUT
-    while test -s $OLD_PIN && test $n -ge 0
-    do
-      printf '.' && sleep 1 && n=$(( $n - 1 ))
-    done
-    echo
-
-    if test $n -lt 0 && test -s $OLD_PIN
-    then
-      echo >&2 "$OLD_PIN still exists after $TIMEOUT seconds"
-      exit 1
-    fi
-    exit 0
-  fi
-  echo >&2 "Couldn't upgrade, starting '$CMD' instead"
-  run "$CMD"
-  ;;
-reopen-logs)
-  sig USR1
-  ;;
-*)
-  echo >&2 "Usage: $0 <start|stop|restart|upgrade|force-stop|reopen-logs>"
-  exit 1
-  ;;
+case $1 in
+  start)
+    sig 0 && echo >&2 "Already running" && exit 0
+    echo "Starting"
+    run "$CMD"
+    ;;
+  stop)
+    sig QUIT && echo "Stopping" && exit 0
+    echo >&2 "Not running"
+    ;;  
+  force-stop)
+    sig TERM && echo "Forcing a stop" && exit 0
+    echo >&2 "Not running"
+    ;;  
+  restart|reload)
+    sig USR2 && sleep 5 && oldsig QUIT && echo "Killing old master" `cat $OLD_PID` && exit 0
+    echo >&2 "Couldn't reload, starting '$CMD' instead"
+    run "$CMD"
+    ;;  
+  upgrade)
+    sig USR2 && echo Upgraded && exit 0
+    echo >&2 "Couldn't upgrade, starting '$CMD' instead"
+    run "$CMD"
+    ;;  
+  rotate)
+    sig USR1 && echo rotated logs OK && exit 0
+    echo >&2 "Couldn't rotate logs" && exit 1
+    ;;  
+  *)  
+    echo >&2 "Usage: $0 <start|stop|restart|upgrade|rotate|force-stop>"
+    exit 1
+    ;;  
 esac
