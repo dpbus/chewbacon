@@ -22,3 +22,16 @@ jQuery ->
     else
       return true;
       
+jQuery ->
+  $('#filter_start').datepicker
+    showOn: 'button',
+    buttonImage: '/assets/calendar.png',
+    buttonImageOnly: true,
+    dateFormat: 'yy-mm-dd'
+    
+jQuery ->
+  $('#filter_end').datepicker
+    showOn: 'button',
+    buttonImage: '/assets/calendar.png',
+    buttonImageOnly: true,
+    dateFormat: 'yy-mm-dd'

@@ -1,15 +1,5 @@
 <% title @group.name %>
 
-<%= form_tag(@group, :method => :get) do %>
-  <%= label_tag "start_date", "Start" %>:
-  <%= select_tag("start_date", options_from_collection_for_select(WeighIn.dates_from_group(@group.id), :date, :display_date, params[:start_date]), { :include_blank => true }) %>
-  <%= label_tag "end_date", "End" %>:
-  <%= select_tag("end_date", options_from_collection_for_select(WeighIn.dates_from_group(@group.id), :date, :display_date, params[:end_date]), { :include_blank => true }) %>
-  <%= button_tag "Update", :id => "filter_button" %>
-<% end %>
-
-<br/>
-
 <table>
   <tr>
     <th>User</th>
@@ -20,18 +10,18 @@
   <tr>
     <td><%= link_to u.name, u %></td>
     <td>
-      <% if params[:start_date].nil? || params[:start_date].empty? %>
+      <% if params[:filter_start].nil? || params[:filter_start].empty? %>
         <%= u.weight_delta %>
       <% else  %>
-        <%= u.weight_delta(params[:start_date],params[:end_date]) %>          
+        <%= u.weight_delta(params[:filter_start],params[:filter_end]) %>          
       <% end %>
     lbs
     </td>
     <td>
-      <% if params[:start_date].nil? || params[:start_date].empty? %>
+      <% if params[:filter_start].nil? || params[:filter_start].empty? %>
         <%= u.weight_delta_percent %>
       <% else  %>
-        <%= u.weight_delta_percent(params[:start_date],params[:end_date]) %>  
+        <%= u.weight_delta_percent(params[:filter_start],params[:filter_end]) %>  
       <% end %>
     %
     </td>
@@ -39,7 +29,23 @@
 <% end %>
 </table>
 
-<%= content_tag :div, "", id: "group-weight-chart", data: { weight: @group.chart_data[:data], ykeys: @group.chart_data[:keys] } %>
+<div id="filter">
+  <h3>Filter Table</h3>
+  <%= form_tag(@group, :method => :get) do %>
+      <div class="filter_section">
+        <%= label_tag "filter_start", "Start:" %>
+        <%= text_field_tag "filter_start", params[:filter_start], { :id => "filter_start", :class => "date_picker" } %><br/>
+      </div>
+      <div>
+        <%= label_tag "filter_end", "End:" %>
+        <%= text_field_tag "filter_end", params[:filter_end], { :id => "filter_end", :class => "date_picker" } %><br/>
+      </div>
+    <%= button_tag "Update Table", :id => "filter_button", :class => "fancy" %>
+  <% end %>
+</div>
+
+
+<%= content_tag :div, "", id: "group-weight-chart", data: { weight: @group.chart_data(params[:filter_start],params[:filter_end])[:data], ykeys: @group.chart_data(params[:filter_start],params[:filter_end])[:keys] } %>
 
 <% if current_user.admin %>
 <div>

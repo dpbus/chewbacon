@@ -5,3 +5,92 @@
 #group_user_ids {
   width: 400px;
 }
+
+#filter {
+
+  label,
+  input {
+    display: block;
+    float: left;
+    width: 200px;  
+  }
+  
+  label {
+    width: 30px;
+    padding: 8px 8px 8px 0px;
+    text-align: right;
+  }
+  
+  br {
+    clear: left;
+  }
+  
+  .filter_section {
+    padding: 8px 8px 8px 0px;
+  }
+  
+  .padded {
+    border: 1px solid black;
+  }
+
+  .ui-datepicker-trigger {
+    vertical-align: middle;
+    padding-left: 2px;
+    margin-top: -2px;
+    padding-top: 4px;
+    
+  }
+  .ui-datepicker {
+    display: none;
+    font-family: Muli, 'helvetica neue', helvetica, arial, sans-serif;
+    font-size: 0.9em;
+    background-color: #FEFEFE;
+    border: 1px solid #CCCCCC;
+  
+    .ui-datepicker-header {
+      background-color: #CCCCCC;
+      padding: 3px 0;
+      text-align: center;
+      font-weight: 400;
+      
+      .ui-datepicker-prev, .ui-datepicker-next {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        padding: 0;
+        text-indent: -9999px;
+      }
+      .ui-datepicker-prev { left: 2px; background: image-url('cal-prev.png'); } 
+      .ui-datepicker-next { right: 2px; background: image-url('cal-next.png'); } 
+    }
+    
+    .ui-datepicker-calendar {
+      margin: 0 5px 5px;
+      
+      td {
+        background-color: #EDEDED;
+        padding: 0;
+        margin: 2px;
+        line-height: 1em;
+        
+        a {
+          text-decoration: none;
+          color: #333333;
+          display: block;
+          padding: 5px;
+          text-align: right;
+          line-height: 1em;
+        }
+        a.ui-state-hover, a.ui-state-active {
+          background-color: #FFFDC3;
+        }
+      }
+      .ui-datepicker-today {
+        background-color: #CCCCCC;
+      }
+      .ui-datepicker-other-month {
+        background-color: transparent;
+      }
+    }
+  }
+}

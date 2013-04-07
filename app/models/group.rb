@@ -3,8 +3,9 @@ class Group < ActiveRecord::Base
   has_many :users, through: :memberships
   attr_accessible :name, :user_ids
   
-  def chart_data
-    weigh_ins = WeighIn.where(user_id: users).order(:date)
+  def chart_data(start_date = 100.years.ago, end_date = Time.zone.now)
+#     weigh_ins = WeighIn.where(user_id: users).order(:date)
+    weigh_ins = WeighIn.where("user_id in (?) and date > ? and date < ?",users,start_date,end_date).order(:date)
     keys = []
     h = {}
     weigh_ins.each do |wi|
