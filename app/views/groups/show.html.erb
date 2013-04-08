@@ -7,6 +7,7 @@
     <th>%</th>
   </tr>
 <% @group.users.each do |u| %>
+  <% if WeighIn.where(user_id: u.id).count > 0 %>
   <tr>
     <td><%= link_to u.name, u %></td>
     <td>
@@ -26,6 +27,7 @@
     %
     </td>
   </tr>
+  <% end %>
 <% end %>
 </table>
 
