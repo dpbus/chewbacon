@@ -44,8 +44,11 @@
   <% end %>
 </div>
 
-
-<%= content_tag :div, "", id: "group-weight-chart", data: { weight: @group.chart_data(params[:filter_start],params[:filter_end])[:data], ykeys: @group.chart_data(params[:filter_start],params[:filter_end])[:keys] } %>
+<% if params[:filter_start].nil? || params[:filter_start].empty? %>
+      <%= content_tag :div, "", id: "group-weight-chart", data: { weight: @group.chart_data[:data], ykeys: @group.chart_data[:keys] } %>
+      <% else  %>
+        <%= content_tag :div, "", id: "group-weight-chart", data: { weight: @group.chart_data(params[:filter_start],params[:filter_end])[:data], ykeys: @group.chart_data(params[:filter_start],params[:filter_end])[:keys] } %>
+      <% end %>
 
 <% if current_user.admin %>
 <div>
