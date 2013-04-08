@@ -1,5 +1,21 @@
 <% title @group.name %>
 
+<div id="filter">
+  <h3>Filter Group</h3>
+  <%= form_tag(@group, :method => :get) do %>
+      <div class="filter_section">
+        <%= label_tag "filter_start", "Start:" %>
+        <%= text_field_tag "filter_start", params[:filter_start], { :id => "filter_start", :class => "date_picker" } %><br/>
+      </div>
+      <div>
+        <%= label_tag "filter_end", "End:" %>
+        <%= text_field_tag "filter_end", params[:filter_end], { :id => "filter_end", :class => "date_picker" } %><br/>
+      </div>
+    <%= button_tag "Update Data", :id => "filter_button", :class => "fancy" %>
+  <% end %>
+</div>
+
+
 <table>
   <tr>
     <th>User</th>
@@ -30,21 +46,6 @@
   <% end %>
 <% end %>
 </table>
-
-<div id="filter">
-  <h3>Filter Table</h3>
-  <%= form_tag(@group, :method => :get) do %>
-      <div class="filter_section">
-        <%= label_tag "filter_start", "Start:" %>
-        <%= text_field_tag "filter_start", params[:filter_start], { :id => "filter_start", :class => "date_picker" } %><br/>
-      </div>
-      <div>
-        <%= label_tag "filter_end", "End:" %>
-        <%= text_field_tag "filter_end", params[:filter_end], { :id => "filter_end", :class => "date_picker" } %><br/>
-      </div>
-    <%= button_tag "Update Table", :id => "filter_button", :class => "fancy" %>
-  <% end %>
-</div>
 
 <% if params[:filter_start].nil? || params[:filter_start].empty? %>
       <%= content_tag :div, "", id: "group-weight-chart", data: { weight: @group.chart_data[:data], ykeys: @group.chart_data[:keys] } %>
