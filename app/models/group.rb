@@ -5,7 +5,7 @@ class Group < ActiveRecord::Base
   
   def chart_data(start_date = 100.years.ago, end_date = Time.zone.now)
 #     weigh_ins = WeighIn.where(user_id: users).order(:date)
-    weigh_ins = WeighIn.where("user_id in (?) and date >= ? and date <= ?",users,start_date.beginning_of_day,end_date.end_of_day).order(:date)
+    weigh_ins = WeighIn.where("user_id in (?) and date >= ? and date <= ?",users,Date.parse(start_date).beginning_of_day,Date.parse(end_date).end_of_day).order(:date)
     keys = []
     h = {}
     weigh_ins.each do |wi|
