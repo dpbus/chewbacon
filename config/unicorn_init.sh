@@ -7,7 +7,7 @@
 
 set -e
 
-APP_ROOT=/var/www/sites/weight/current
+APP_ROOT=/var/www/chewbacon/current
 APP_ENV=production
 
 PID=$APP_ROOT/tmp/pids/unicorn.pid
