@@ -4,10 +4,10 @@ default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
 set :application, 'chewbacon'
-set :domain,      'woof'
+set :domain,      'chewbacon.com'
 
 set :scm, :git
-set :repository,  'git@github.com:dpbus/weight-tracker.git'
+set :repository,  'git@github.com:dpbus/chewbacon.git'
 set :rails_env,   'production'
 
 set :user,        'deploy'
@@ -16,7 +16,7 @@ set :deploy_to,   '/var/www/chewbacon'
 set :deploy_via,  :remote_cache
 
 # database options
-set :database_username, 'weight'
+set :database_username, 'chewbacon'
 set :database, application
 
 server fetch(:domain), :app, :web, :db, :primary => true
