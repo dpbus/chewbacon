@@ -1,7 +1,7 @@
 raw_config = File.read("#{Rails.root}/config/mail.yml")
 MAIL_CONFIG = YAML.load(raw_config)[Rails.env].symbolize_keys
 
-Marker::Application.configure do
+Weightbot::Application.configure do
   config.action_mailer.smtp_settings = {  
     address:              MAIL_CONFIG[:address],  
     port:                 MAIL_CONFIG[:port],  
