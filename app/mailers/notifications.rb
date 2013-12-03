@@ -1,5 +1,5 @@
 class Notifications < ActionMailer::Base
-  default from: "from@example.com"
+  default from: MAIL_CONFIG[:from_address]
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -8,6 +8,6 @@ class Notifications < ActionMailer::Base
   #
   def password_reset(user)
     @user = user
-    mail to: user.email, subject: "[lbs.essub.com] Password Reset"
+    mail to: user.email, subject: "[Chewbacon] Password Reset Instructions"
   end
 end
