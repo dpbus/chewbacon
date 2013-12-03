@@ -22,10 +22,10 @@ set :database, application
 server fetch(:domain), :app, :web, :db, :primary => true
 
 # callbacks
-before 'deploy:setup',       'db:configure'
-after  'deploy:setup',       'deploy:setup_config'
-after  'deploy:update_code', 'db:symlink'
-after  'deploy',             'deploy:check_revision'
+before 'deploy:setup', 'db:configure', 'mail:configure'
+after  'deploy:setup', 'deploy:setup_config'
+after  'deploy:finalize_update', 'db:symlink', 'mail:symlink'
+after  'deploy', 'deploy:check_revision'
 
 namespace :deploy do
   %w[start stop restart].each do |command|
@@ -74,5 +74,39 @@ EOF
   desc 'Symlink database config'
   task :symlink do
     run "ln -nfs #{shared_path}/config/database.yml #{latest_release}/config/database.yml"
+  end
+end
+
+namespace :mail do
+  desc 'Create mail yaml in shared path'
+  task :configure do
+    set :mail_username do
+      Capistrano::CLI.ui.ask "Mail Username: "
+    end
+    set :mail_password do
+      Capistrano::CLI.password_prompt "Mail Password for #{mail_username}: "
+    end
+    
+    mail_config = <<-EOF
+production:
+  address: smtp.mandrillapp.com 
+  port: 587
+  domain: #{domain}  
+  user_name: #{mail_username}
+  password: '#{mail_password}'
+  authentication: plain  
+  enable_starttls_auto: true
+  admin_address: support@essub.com
+  from_address: Chewbacon <lbs@essub.com>
+EOF
+
+    run "mkdir -p #{shared_path}/config"
+    put mail_config, "#{shared_path}/config/mail.yml"
+    run "chmod 600 #{shared_path}/config/mail.yml"
+  end
+
+  desc 'Symlink database config'
+  task :symlink do
+    run "ln -nfs #{shared_path}/config/mail.yml #{latest_release}/config/mail.yml"
   end
 end
