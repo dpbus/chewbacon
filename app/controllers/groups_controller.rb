@@ -7,7 +7,7 @@ class GroupsController < ApplicationController
   end
   
   def show
-    @group = current_user.groups.find(params[:id])
+    @group = current_user.admin ? Group.find(params[:id]) : current_user.groups.find(params[:id])
   end
   
   def create
