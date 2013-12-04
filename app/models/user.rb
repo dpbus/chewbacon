@@ -42,6 +42,8 @@ class User < ActiveRecord::Base
       latest = weigh_ins.order(:date).where("date <= ?", end_date.to_date.end_of_day).last.weight
       
       latest - start
+    else
+      0
     end
     
     rescue
@@ -53,6 +55,8 @@ class User < ActiveRecord::Base
     if (weigh_ins.where("date >= ?", start_date).count > 0)
       start = weigh_ins.order(:date).where("date >= ?", start_date).first.weight
       (100*weight_delta(start_date, end_date)/start).round(2)
+    else
+      0
     end
   end
 end
