@@ -5,11 +5,11 @@
   <%= form_tag(@group, :method => :get) do %>
       <div class="filter_section">
         <%= label_tag "filter_start", "Start:" %>
-        <%= text_field_tag "filter_start", params[:filter_start], { :id => "filter_start", :class => "date_picker" } %><br/>
+        <%= text_field_tag "filter_start", params[:filter_start], { :id => "filter_start", :class => "date-picker" } %><br/>
       </div>
       <div>
         <%= label_tag "filter_end", "End:" %>
-        <%= text_field_tag "filter_end", params[:filter_end], { :id => "filter_end", :class => "date_picker" } %><br/>
+        <%= text_field_tag "filter_end", params[:filter_end], { :id => "filter_end", :class => "date-picker" } %><br/>
       </div>
     <%= button_tag "Update Data", :id => "filter_button", :class => "fancy" %>
   <% end %>

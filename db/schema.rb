@@ -11,13 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130105033220) do
+ActiveRecord::Schema.define(:version => 20131204204645) do
 
   create_table "groups", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.datetime "start_date"
+    t.datetime "end_date"
   end
+
+  add_index "groups", ["end_date"], :name => "index_groups_on_end_date"
+  add_index "groups", ["start_date"], :name => "index_groups_on_start_date"
 
   create_table "memberships", :force => true do |t|
     t.integer  "user_id"

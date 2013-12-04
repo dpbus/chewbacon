@@ -14,24 +14,16 @@ jQuery ->
   
   $('#group_user_ids').chosen()
 
-jQuery ->
   $('#filter_button').click ->
     if $('#start_date').val() >= $('#end_date').val()
       alert('The start value selected is greater than equal to the end date. Try again.');
       return false;
     else
       return true;
-      
-jQuery ->
-  $('#filter_start').datepicker
+
+  $('.date-picker').datepicker
     showOn: 'button',
     buttonImage: '/assets/calendar.png',
     buttonImageOnly: true,
     dateFormat: 'yy-mm-dd'
     
-jQuery ->
-  $('#filter_end').datepicker
-    showOn: 'button',
-    buttonImage: '/assets/calendar.png',
-    buttonImageOnly: true,
-    dateFormat: 'yy-mm-dd'

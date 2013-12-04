@@ -1,11 +1,22 @@
 class Group < ActiveRecord::Base
   has_many :memberships
   has_many :users, through: :memberships
-  attr_accessible :name, :user_ids
+  attr_accessible :name, :user_ids, :start_date, :end_date
   
-  def chart_data(start_date = 100.years.ago.to_s, end_date = Time.zone.now.to_s)
+  def chart_data(startd = 100.years.ago, endd = Time.zone.now)
 #     weigh_ins = WeighIn.where(user_id: users).order(:date)
-    weigh_ins = WeighIn.where("user_id in (?) and date >= ? and date <= ?",users,Date.parse(start_date).beginning_of_day,Date.parse(end_date).end_of_day).order(:date)
+    
+    # make sure filter is within group dates
+    if start_date && startd < start_date
+      puts "HERE!!!!!!!!!!!!!!!!!!!!!!"
+      startd = start_date
+    end
+    if end_date && endd > end_date
+      endd = end_date
+    end
+    startd = startd.to_s
+    endd = endd.to_s
+    weigh_ins = WeighIn.where("user_id in (?) and date >= ? and date <= ?",users,Date.parse(startd).beginning_of_day,Date.parse(endd).end_of_day).order(:date)
     keys = []
     h = {}
     weigh_ins.each do |wi|
