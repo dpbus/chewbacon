@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       @user = current_user
     end
     
-    @weigh_ins = @user.weigh_ins.order("date desc")
+    @weigh_ins = @user.weigh_ins.order(:date)
     @groups = @user.groups
   end
   
