@@ -15,5 +15,4 @@
 /tmp
 .DS_Store
 
-/config/database.yml
-/config/mail.yml
+/.env

@@ -1,0 +1,24 @@
+default: &default
+  address: smtp.mandrillapp.com 
+  port: 587
+  domain: chewbacon.com  
+  authentication: plain  
+  enable_starttls_auto: true
+  admin_address: support@essub.com
+  from_address: Chewbacon <lbs@essub.com>
+  
+development:
+  <<: *default
+  user_name: <%= ENV['DEV_MAIL_USERNAME'] %>
+  password: <%= ENV['DEV_MAIL_PASSWORD'] %>
+  
+test:
+  <<: *default
+  user_name: <%= ENV['TEST_MAIL_USERNAME'] %>
+  password: <%= ENV['TEST_MAIL_PASSWORD'] %>
+  
+production:
+  <<: *default
+  user_name: <%= ENV['MAIL_USERNAME'] %>
+  password: <%= ENV['MAIL_PASSWORD'] %>
+  
