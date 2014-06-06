@@ -44,3 +44,5 @@ group :production do
   gem 'pg'
   gem 'unicorn'
 end
+
+gem 'rack-canonical-host', '~> 0.1.0'
