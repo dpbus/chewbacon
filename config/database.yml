@@ -5,11 +5,13 @@ default: &default
 
 development:
   <<: *default
-  url: <%= ENV['DEV_DATABASE_URL'] %>
+  host: localhost
+  database: chewbacon
 
 test:
   <<: *default
-  url: <%= ENV['TEST_DATABASE_URL'] %>
+  host: localhost
+  database: chewbacon_test
 
 production:
   <<: *default

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
+ruby '2.3.6'
 
-gem 'rails', '3.2.18'
+gem 'rails', '3.2.22.5'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -26,7 +26,7 @@ gem 'jquery-rails', '~> 2.1'
 
 gem 'dotenv-rails', '~> 0.11.1', groups: [:development, :test]
 # To use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.1'
 
 gem 'possessive'
 # To use Jbuilder templates for JSON
