@@ -11,7 +11,7 @@ jQuery ->
       labels: $('#group-weight-chart').data('ykeys')
       ymin: 'auto'
       postUnits: ' lbs'
-  
+
   $('#group_user_ids').chosen()
 
   $('#filter_button').click ->
@@ -23,7 +23,7 @@ jQuery ->
 
   $('.date-picker').datepicker
     showOn: 'button',
-    buttonImage: '/assets/calendar.png',
+    buttonImage: <%= asset_path('calendar.png') %>,
     buttonImageOnly: true,
     dateFormat: 'yy-mm-dd'
-    
+

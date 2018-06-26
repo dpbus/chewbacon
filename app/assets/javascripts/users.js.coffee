@@ -11,4 +11,4 @@ jQuery ->
       labels: ['Weight']
       ymin: 'auto'
       postUnits: ' lbs'
-      
+

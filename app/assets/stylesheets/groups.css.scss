@@ -14,23 +14,23 @@
   input {
     display: block;
     float: left;
-    width: 200px;  
+    width: 200px;
   }
-  
+
   label {
     width: 30px;
     padding: 8px 8px 8px 0px;
     text-align: right;
   }
-  
+
   br {
     clear: left;
   }
-  
+
   .filter_section {
     padding: 8px 8px 8px 0px;
   }
-  
+
   .padded {
     border: 1px solid black;
   }
@@ -40,7 +40,7 @@
     padding-left: 2px;
     margin-top: -2px;
     padding-top: 4px;
-    
+
   }
   .ui-datepicker {
     display: none;
@@ -48,13 +48,13 @@
     font-size: 0.9em;
     background-color: #FEFEFE;
     border: 1px solid #CCCCCC;
-  
+
     .ui-datepicker-header {
       background-color: #CCCCCC;
       padding: 3px 0;
       text-align: center;
       font-weight: 400;
-      
+
       .ui-datepicker-prev, .ui-datepicker-next {
         position: absolute;
         width: 16px;
@@ -62,19 +62,19 @@
         padding: 0;
         text-indent: -9999px;
       }
-      .ui-datepicker-prev { left: 2px; background: image-url('cal-prev.png'); } 
-      .ui-datepicker-next { right: 2px; background: image-url('cal-next.png'); } 
+      .ui-datepicker-prev { left: 2px; background: image-url('cal-prev.png'); }
+      .ui-datepicker-next { right: 2px; background: image-url('cal-next.png'); }
     }
-    
+
     .ui-datepicker-calendar {
       margin: 0 5px 5px;
-      
+
       td {
         background-color: #EDEDED;
         padding: 0;
         margin: 2px;
         line-height: 1em;
-        
+
         a {
           text-decoration: none;
           color: #333333;

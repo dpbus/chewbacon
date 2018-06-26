@@ -36,9 +36,9 @@ a {
 
 h1, h2 { font-weight: 300; }
 
-input[type=text], 
-input[type=password], 
-input[type=email], 
+input[type=text],
+input[type=password],
+input[type=email],
 input[type=number],
 textarea, select {
   @include border-radius(5px);
@@ -52,8 +52,8 @@ textarea {
   width: 340px;
 }
 
-#flash_notice, 
-#flash_error, 
+#flash_notice,
+#flash_error,
 #flash_alert {
   padding: 10px;
 }
@@ -70,12 +70,12 @@ textarea {
   border: solid 1px #DDCACA;
 }
 
-.visually-hidden { 
-  position: absolute; 
-  overflow: hidden; 
-  clip: rect(0 0 0 0); 
-  height: 1px; width: 1px; 
-  margin: -1px; padding: 0; border: 0; 
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px; width: 1px;
+  margin: -1px; padding: 0; border: 0;
 }
 
 .field {
@@ -90,7 +90,7 @@ textarea {
   }
   .field_with_errors {
     label { color: #CC3333; }
-    input { 
+    input {
       background: #FFF6F6;
     }
   }
@@ -98,22 +98,22 @@ textarea {
 
 .fancy {
   font-size: 1em;
-	color: #fff; 
-	background: darkblue image-url('button-overlay.png') repeat-x; 
-	display: inline-block; 
-	padding: 5px 10px 6px; 
+	color: #fff;
+	background: darkblue image-url('button-overlay.png') repeat-x;
+	display: inline-block;
+	padding: 5px 10px 6px;
   border: none;
 	border-bottom: 1px solid rgba(0,0,0,0.25);
   @include border-radius(5px);
   @include box-shadow(0 1px 3px rgba(0,0,0,0.5));
 	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
 	cursor: pointer;
-  &:hover	{ 
-    background-color: blue; 
-    color: #fff; 
+  &:hover	{
+    background-color: blue;
+    color: #fff;
     text-decoration: none;
   }
-  
+
   &:active { top: 1px; }
 }
 
@@ -122,17 +122,17 @@ header {
   background: #232323;
   height: 50px;
   color: #AAAAAA;
-  
+
   #header-container {
     width: 980px;
     height: 50px;
     margin: 0 auto;
 //    padding: 10px 0;
     font-weight: 300;
-    
+
     #main-logo {
       float: left;
-      display: inline-block;    
+      display: inline-block;
     }
     a {
       color: #AAAAAA;
@@ -142,7 +142,7 @@ header {
         text-shadow: 0px -1px 0px #555;
       }
     }
-    
+
     nav {
       float: right;
       margin-top: -5px;
@@ -151,16 +151,16 @@ header {
         background: #333333;
         border: 1px solid #111;
         padding: 0;
-        
-        li:first-child a { 
+
+        li:first-child a {
           @include border-radius(5px 0 0 5px);
         }
-        li:last-child a { 
-          @include border-radius(0 5px 5px 0); 
+        li:last-child a {
+          @include border-radius(0 5px 5px 0);
           border-right: none;
-          
+
         }
-        
+
         li {
           display: inline-block;
           a {
@@ -171,7 +171,7 @@ header {
           }
         }
       }
-      
+
       li.hover, li > a:hover {
         background: #4A4A49;
       }
@@ -181,15 +181,15 @@ header {
           padding: 0;
           visibility: hidden;
           width: 135px;
-          position: absolute; 
-          top: 100%; 
+          position: absolute;
+          top: 100%;
           left: 0;
           background: #333;
           border: 1px solid #111;
           @include border-radius(0 5px 5px 5px);
-          
-          li { 
-            display: block; 
+
+          li {
+            display: block;
             a { @include border-radius(0 5px 5px 0); }
           }
         }
@@ -202,22 +202,22 @@ header {
 table {
   border-collapse: collapse;
   th {
-    border: 1px solid #111; 
-    padding: 5px 10px; 
+    border: 1px solid #111;
+    padding: 5px 10px;
     background: #4A4A49;
     color: #EFEFEF;
-    text-align: left; 
+    text-align: left;
     font-weight: 300;
     margin: 0;
   }
   tr.odd { background-color: #EFEFED; }
-  tr.total { 
+  tr.total {
     background-color: #EFEFED;
     font-weight: bold;
   }
-  td { 
-    padding: 5px 10px; 
-    border: 1px solid #DFDFDF; 
+  td {
+    padding: 5px 10px;
+    border: 1px solid #DFDFDF;
     img { vertical-align: top; }
   }
 

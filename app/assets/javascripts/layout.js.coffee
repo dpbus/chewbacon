@@ -5,5 +5,4 @@ jQuery ->
   , ->
     $(this).removeClass("hover");
     $('#users-groups-nav').css('visibility', 'hidden');
-    
-    
+
