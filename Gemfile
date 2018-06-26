@@ -42,3 +42,5 @@ end
 gem 'rack-canonical-host', '~> 0.1.0'
 
 gem 'protected_attributes'
+
+gem 'rails_12factor', group: :production
