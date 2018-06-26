@@ -1,32 +1,25 @@
 source 'https://rubygems.org'
 ruby '2.3.6'
 
-gem 'rails', '3.2.22.5'
+gem 'rails', '4.0.6'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3', group: [:test, :development]
 
-
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  gem 'therubyracer', '~> 0.12.0', platforms: :ruby
-
-  gem 'uglifier', '>= 1.0.3'
-  gem 'chosen-rails'
-end
+gem 'sass-rails'
+gem 'coffee-rails'
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+gem 'therubyracer', platforms: :ruby
+gem 'uglifier'
+gem 'chosen-rails'
 
 gem 'jquery-rails', '~> 2.1'
 
 gem 'dotenv-rails', '~> 0.11.1', groups: [:development, :test]
 # To use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.1'
+gem 'bcrypt-ruby', '~> 3.1.5'
 
 gem 'possessive'
 # To use Jbuilder templates for JSON
@@ -40,9 +33,12 @@ gem 'capistrano', '~> 2.15'
 
 # To use debugger
 # gem 'debugger'
+gem 'pg', '~> 0.21'
+
 group :production do
-  gem 'pg'
   gem 'unicorn'
 end
 
 gem 'rack-canonical-host', '~> 0.1.0'
+
+gem 'protected_attributes'
