@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.3.6'
 
-gem 'rails', '4.1.16'
+gem 'rails', '4.2.10'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -42,3 +42,7 @@ gem 'rack-canonical-host', '~> 0.1.0'
 gem 'protected_attributes'
 
 gem 'rails_12factor', group: :production
+
+group :development do
+  gem 'web-console', '~> 2.0'
+end
