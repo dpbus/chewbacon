@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.3.6'
+ruby '2.5.1'
 
 gem 'rails', '4.2.10'
 
@@ -17,7 +17,7 @@ gem 'jquery-rails', '~> 2.1'
 
 gem 'dotenv-rails', '~> 0.11.1', groups: [:development, :test]
 # To use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.1.5'
+gem 'bcrypt', '~> 3.1.12'
 
 gem 'possessive'
 # To use Jbuilder templates for JSON
