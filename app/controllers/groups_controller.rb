@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
-  before_filter :require_user
-  before_filter :require_admin, except: :show
+  before_action :require_user
+  before_action :require_admin, except: :show
 
   def new
     @group = Group.new

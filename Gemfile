@@ -1,46 +1,36 @@
 source 'https://rubygems.org'
 ruby '2.5.1'
 
-gem 'rails', '4.2.10'
+gem 'rails', '~> 5.2.0'
+gem 'pg', '~> 1.0'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'sass-rails', '~> 5.0'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.2'
+gem 'jquery-rails', '~> 4.3'
+gem 'jquery-ui-rails', '~> 6.0'
 
-gem 'sqlite3', group: [:test, :development]
-
-gem 'sass-rails'
-gem 'coffee-rails'
-gem 'uglifier'
 gem 'chosen-rails'
 
-gem 'jquery-rails', '~> 2.1'
-
-gem 'dotenv-rails', '~> 0.11.1', groups: [:development, :test]
-# To use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.12'
-
 gem 'possessive'
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
+gem 'bcrypt', '~> 3.1.7'
 
-# Use unicorn as the app server
-# gem 'unicorn'
+gem 'bootsnap', '>= 1.1.0', require: false
 
-# Deploy with Capistrano
-gem 'capistrano', '~> 2.15'
+group :development, :test do
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'dotenv-rails', '~> 2.5'
+  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  gem 'web-console', '>= 3.3.0'
+  gem 'listen', '>= 3.0.5', '< 3.2'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+end
 
-# To use debugger
-# gem 'debugger'
-gem 'pg', '~> 0.21'
-
+gem 'rack-canonical-host', '~> 0.2'
 group :production do
   gem 'unicorn'
+  gem 'rails_12factor'
 end
 
-gem 'rack-canonical-host', '~> 0.1.0'
-
-gem 'rails_12factor', group: :production
-
-group :development do
-  gem 'web-console', '~> 2.0'
-end

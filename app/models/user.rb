@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   has_many :weigh_ins
   has_many :memberships
   has_many :groups, through: :memberships

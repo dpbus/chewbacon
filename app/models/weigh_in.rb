@@ -1,4 +1,4 @@
-class WeighIn < ActiveRecord::Base
+class WeighIn < ApplicationRecord
   belongs_to :user
 
   validates :date, presence: true

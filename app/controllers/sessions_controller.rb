@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
-  before_filter :require_user, only: :destroy
-  before_filter :require_no_user, except: :destroy
+  before_action :require_user, only: :destroy
+  before_action :require_no_user, except: :destroy
 
   def new
   end
