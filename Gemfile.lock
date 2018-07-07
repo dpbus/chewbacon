@@ -98,8 +98,6 @@ GEM
       mini_portile2 (~> 2.3.0)
     pg (0.21.0)
     possessive (1.0.1)
-    protected_attributes (1.1.4)
-      activemodel (>= 4.0.1, < 5.0)
     public_suffix (3.0.2)
     rack (1.6.10)
     rack-canonical-host (0.1.0)
@@ -188,7 +186,6 @@ DEPENDENCIES
   jquery-rails (~> 2.1)
   pg (~> 0.21)
   possessive
-  protected_attributes
   rack-canonical-host (~> 0.1.0)
   rails (= 4.2.10)
   rails_12factor

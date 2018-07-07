@@ -11,7 +11,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(params[:group])
+    @group = Group.new(group_params)
     if @group.save
       redirect_to group_url(@group), notice: "Group created successfully!"
     else
@@ -25,10 +25,17 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
-    if @group.update_attributes(params[:group])
+    if @group.update_attributes(group_params)
       redirect_to @group, notice: "Group updated successfully!"
     else
       render :edit
     end
+  end
+
+  private
+
+  def group_params
+    params.require(:group).
+      permit(:name, :start_date, :end_date, {user_ids: []})
   end
 end
