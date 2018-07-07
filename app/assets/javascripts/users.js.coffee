@@ -1,7 +1,7 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-jQuery ->
+$(document).on 'turbolinks:load', ->
   if $('#weight-chart').length > 0
     Morris.Line
       element: 'weight-chart'
@@ -11,4 +11,3 @@ jQuery ->
       labels: ['Weight']
       ymin: 'auto'
       postUnits: ' lbs'
-

@@ -1,7 +1,7 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-jQuery ->
+$(document).on 'turbolinks:load', ->
   if $('#group-weight-chart').length > 0
     Morris.Line
       element: 'group-weight-chart'
@@ -16,14 +16,13 @@ jQuery ->
 
   $('#filter_button').click ->
     if $('#start_date').val() >= $('#end_date').val()
-      alert('The start value selected is greater than equal to the end date. Try again.');
-      return false;
+      alert('The start value selected is greater than equal to the end date. Try again.')
+      return false
     else
-      return true;
+      return true
 
   $('.date-picker').datepicker
     showOn: 'button',
     buttonImage: '<%= asset_path('calendar.png') %>',
     buttonImageOnly: true,
     dateFormat: 'yy-mm-dd'
-

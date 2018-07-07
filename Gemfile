@@ -13,6 +13,8 @@ gem 'jquery-ui-rails', '~> 6.0'
 
 gem 'chosen-rails'
 
+gem 'turbolinks', '~> 5'
+
 gem 'possessive'
 gem 'bcrypt', '~> 3.1.7'
 
