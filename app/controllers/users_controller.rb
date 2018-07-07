@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
-  
+
   def create
     @user = User.new(params[:user])
     if @user.save
@@ -15,22 +15,22 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
-  
+
   def show
     if ((params[:id] != current_user.id) && Group.shared_group(params[:id], current_user.id))
       @user = User.find(params[:id])
     else
       @user = current_user
     end
-    
+
     @weigh_ins = @user.weigh_ins.order("date desc")
     @groups = @user.groups
   end
-  
+
   def edit
     @user = current_user
   end
-  
+
   def update
     @user = current_user
     if @user.update_attributes(params[:user])

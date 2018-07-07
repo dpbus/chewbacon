@@ -3,14 +3,14 @@
 <div id="filter">
   <h3>Filter Group</h3>
   <%= form_tag(@group, :method => :get) do %>
-      <div class="filter_section">
-        <%= label_tag "filter_start", "Start:" %>
-        <%= text_field_tag "filter_start", params[:filter_start], { :id => "filter_start", :class => "date-picker" } %><br/>
-      </div>
-      <div>
-        <%= label_tag "filter_end", "End:" %>
-        <%= text_field_tag "filter_end", params[:filter_end], { :id => "filter_end", :class => "date-picker" } %><br/>
-      </div>
+    <div class="filter_section">
+      <%= label_tag "filter_start", "Start:" %>
+      <%= text_field_tag "filter_start", params[:filter_start], { :id => "filter_start", :class => "date-picker" } %><br/>
+    </div>
+    <div>
+      <%= label_tag "filter_end", "End:" %>
+      <%= text_field_tag "filter_end", params[:filter_end], { :id => "filter_end", :class => "date-picker" } %><br/>
+    </div>
     <%= button_tag "Update Data", :id => "filter_button", :class => "fancy" %>
   <% end %>
 </div>
@@ -22,37 +22,37 @@
     <th>lbs</th>
     <th>%</th>
   </tr>
-<% @group.users.each do |u| %>
-  <tr>
-    <td><%= link_to u.name, u %></td>
-    <td>
-      <% if params[:filter_start].nil? || params[:filter_start].empty? %>
-        <%= u.weight_delta(@group.start_date, @group.end_date) %>
-      <% else  %>
-        <%= u.weight_delta(params[:filter_start],params[:filter_end]) %>          
-      <% end %>
-    lbs
-    </td>
-    <td>
-      <% if params[:filter_start].nil? || params[:filter_start].empty? %>
-        <%= u.weight_delta_percent(@group.start_date, @group.end_date) %>
-      <% else  %>
-        <%= u.weight_delta_percent(params[:filter_start],params[:filter_end]) %>  
-      <% end %>
-    %
-    </td>
-  </tr>
-<% end %>
+  <% @group.users.each do |u| %>
+    <tr>
+      <td><%= link_to u.name, u %></td>
+      <td>
+        <% if params[:filter_start].nil? || params[:filter_start].empty? %>
+          <%= u.weight_delta(@group.start_date, @group.end_date) %>
+        <% else  %>
+          <%= u.weight_delta(params[:filter_start],params[:filter_end]) %>
+        <% end %>
+        lbs
+      </td>
+      <td>
+        <% if params[:filter_start].nil? || params[:filter_start].empty? %>
+          <%= u.weight_delta_percent(@group.start_date, @group.end_date) %>
+        <% else  %>
+          <%= u.weight_delta_percent(params[:filter_start],params[:filter_end]) %>
+        <% end %>
+        %
+      </td>
+    </tr>
+  <% end %>
 </table>
 
 <% if params[:filter_start].nil? || params[:filter_start].empty? %>
-      <%= content_tag :div, "", id: "group-weight-chart", data: { weight: @group.chart_data[:data], ykeys: @group.chart_data[:keys] } %>
-      <% else  %>
-        <%= content_tag :div, "", id: "group-weight-chart", data: { weight: @group.chart_data(params[:filter_start],params[:filter_end])[:data], ykeys: @group.chart_data(params[:filter_start],params[:filter_end])[:keys] } %>
-      <% end %>
+  <%= content_tag :div, "", id: "group-weight-chart", data: { weight: @group.chart_data[:data], ykeys: @group.chart_data[:keys] } %>
+<% else %>
+  <%= content_tag :div, "", id: "group-weight-chart", data: { weight: @group.chart_data(params[:filter_start],params[:filter_end])[:data], ykeys: @group.chart_data(params[:filter_start],params[:filter_end])[:keys] } %>
+<% end %>
 
 <% if current_user.admin %>
-<div>
-  <%= link_to "Edit group", edit_group_path(@group) %>
-</div>
+  <div>
+    <%= link_to "Edit group", edit_group_path(@group) %>
+  </div>
 <% end %>
