@@ -26,20 +26,10 @@
     <tr>
       <td><%= link_to u.name, u %></td>
       <td>
-        <% if params[:filter_start].nil? || params[:filter_start].empty? %>
-          <%= u.weight_delta(@group.start_date, @group.end_date) %>
-        <% else  %>
-          <%= u.weight_delta(params[:filter_start],params[:filter_end]) %>
-        <% end %>
-        lbs
+        <%= u.weight_delta(@startd, @endd) %> lbs
       </td>
       <td>
-        <% if params[:filter_start].nil? || params[:filter_start].empty? %>
-          <%= u.weight_delta_percent(@group.start_date, @group.end_date) %>
-        <% else  %>
-          <%= u.weight_delta_percent(params[:filter_start],params[:filter_end]) %>
-        <% end %>
-        %
+        <%= u.weight_delta_percent(@startd, @endd) %> %
       </td>
     </tr>
   <% end %>

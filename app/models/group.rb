@@ -2,36 +2,23 @@ class Group < ApplicationRecord
   has_many :memberships
   has_many :users, through: :memberships
 
-  def chart_data(startd = 100.years.ago, endd = Time.zone.now)
-#     weigh_ins = WeighIn.where(user_id: users).order(:date)
+  def chart_data(startd = start_date, endd = end_date)
+    weigh_ins = WeighIn.select(:date, :user_id, "max(weight) as weight")
+      .where(
+        date: adjusted_date_range(startd, endd),
+        user_id: users,
+    ).includes(:user)
+      .group(:date, :user_id)
+      .order(:date, :user_id)
 
-    # make sure filter is within group dates
-    if start_date && startd < start_date
-      startd = start_date
-    end
-    if end_date && endd > end_date
-      endd = end_date
-    end
-    startd = startd.to_s
-    endd = endd.to_s
-    weigh_ins = WeighIn.where(
-      user_id: users,
-      date: Date.parse(startd).beginning_of_day..Date.parse(endd).end_of_day
-    ).order(:date)
+    data = weigh_ins.reduce({}) do |coll, wi|
+      coll[wi.date] ||= {}
+      coll[wi.date]["date"] ||= wi.date
+      coll[wi.date][wi.user.name] = wi.weight
+      coll
+    end.values
 
-    keys = []
-    h = {}
-    weigh_ins.each do |wi|
-      keys << wi.user.name
-      h[wi.date] = {} unless h.has_key?(wi.date)
-      h[wi.date][wi.user.name] = wi.weight
-    end
-
-    output = []
-    h.each do |k, v|
-      output << v.merge({'date' => k})
-    end
-    { data: output, keys: keys.uniq }
+    {keys: weigh_ins.map(&:user).map(&:name).uniq, data: data}
   end
 
   def self.shared_group(user_a, user_b)
@@ -43,5 +30,22 @@ class Group < ApplicationRecord
     else
       return false
     end
+  end
+
+  private
+
+  def adjusted_date_range(startd, endd)
+    startd = Date.parse(startd.to_s) rescue nil
+    endd   = Date.parse(endd.to_s) rescue nil
+    [
+      startd,
+      start_date,
+      Date.new
+    ].compact.max.beginning_of_day..
+    [
+      endd,
+        end_date,
+        Date.today
+    ].compact.min.end_of_day
   end
 end

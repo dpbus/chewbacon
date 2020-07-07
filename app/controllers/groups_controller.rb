@@ -8,6 +8,8 @@ class GroupsController < ApplicationController
 
   def show
     @group = current_user.admin ? Group.find(params[:id]) : current_user.groups.find(params[:id])
+    @startd = params[:filter_start] || @group.start_date
+    @endd = params[:filter_end] || @group.end_date
   end
 
   def create
