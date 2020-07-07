@@ -3,7 +3,7 @@ ruby '2.5.1'
 
 gem 'rails', '~> 5.2.0'
 gem 'pg', '~> 1.0'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 
 gem 'mini_racer'
 gem 'sass-rails', '~> 5.0'
