@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
-ruby '2.5.1'
+ruby '2.7.6'
 
 gem 'rails', '~> 5.2.0'
 gem 'pg', '~> 1.0'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 
 gem 'mini_racer'
 gem 'sass-rails', '~> 5.0'
@@ -30,7 +30,7 @@ group :development, :test do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  gem 'factory_bot_rails'
+  gem 'factory_bot_rails', '~> 4.10.0'
 end
 
 gem 'web-console', '>= 3.3.0', group: :development

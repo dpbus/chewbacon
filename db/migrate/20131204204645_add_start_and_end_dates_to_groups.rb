@@ -1,4 +1,4 @@
-class AddStartAndEndDatesToGroups < ActiveRecord::Migration
+class AddStartAndEndDatesToGroups < ActiveRecord::Migration[5.2]
   def change
     add_column :groups, :start_date, :datetime
     add_column :groups, :end_date, :datetime
