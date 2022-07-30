@@ -30,7 +30,7 @@ class WeighInsController < ApplicationController
 
   def update
     @weigh_in = current_user.weigh_ins.find(params[:id])
-    if @weigh_in.update_attributes(weigh_in_params)
+    if @weigh_in.update(weigh_in_params)
       redirect_to current_user, notice: "Weigh-in updated successfully."
     else
       render :edit

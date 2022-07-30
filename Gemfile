@@ -1,9 +1,11 @@
 source 'https://rubygems.org'
-ruby '2.7.6'
+ruby '3.1.2'
 
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 6.1.0'
 gem 'pg', '~> 1.0'
 gem 'puma', '~> 4.3'
+
+gem 'net-smtp', '~> 0.3.1'
 
 gem 'mini_racer'
 gem 'sass-rails', '~> 5.0'

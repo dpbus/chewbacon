@@ -1,7 +1,7 @@
 require 'yaml'
 
 raw_config = File.read("#{Rails.root}/config/mail.yml")
-MAIL_CONFIG = YAML.load(raw_config)[Rails.env].symbolize_keys
+MAIL_CONFIG = YAML.load(raw_config, aliases: true)[Rails.env].symbolize_keys
 
 Weightbot::Application.configure do
   config.action_mailer.smtp_settings = {

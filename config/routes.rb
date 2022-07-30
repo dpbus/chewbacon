@@ -11,6 +11,5 @@ Rails.application.routes.draw do
   resources :sessions
   resources :password_resets
   resources :groups
-
   root to: 'users#show'
 end

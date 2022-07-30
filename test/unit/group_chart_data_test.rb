@@ -31,19 +31,19 @@ class Group::ChartDataTest < ActiveSupport::TestCase
     end
 
     it "handles groups with no end date" do
-      group.update_attributes(end_date: nil)
+      group.update(end_date: nil)
       _(group.chart_data[:keys]).must_include *@weigh_ins.map(&:user).map(&:name)
       _(group.chart_data[:keys].length).must_equal @weigh_ins.length
     end
 
     it "handles groups with no start date" do
-      group.update_attributes(start_date: nil)
+      group.update(start_date: nil)
       _(group.chart_data[:keys]).must_include *@weigh_ins.map(&:user).map(&:name)
       _(group.chart_data[:keys].length).must_equal @weigh_ins.length
     end
 
     it "handles groups with no dates" do
-      group.update_attributes(start_date: nil, end_date: nil)
+      group.update(start_date: nil, end_date: nil)
       _(group.chart_data[:keys]).must_include *@weigh_ins.map(&:user).map(&:name)
       _(group.chart_data[:keys].length).must_equal @weigh_ins.length
     end
@@ -68,8 +68,8 @@ class Group::ChartDataTest < ActiveSupport::TestCase
 
 
     it "only includes weigh ins for the date range" do
-      @weigh_ins.first.update_attributes(date: Date.tomorrow)
-      @weigh_ins.last.update_attributes(date: Date.yesterday)
+      @weigh_ins.first.update(date: Date.tomorrow)
+      @weigh_ins.last.update(date: Date.yesterday)
       _(group.chart_data(Date.yesterday, Date.current)[:keys]).wont_include @weigh_ins.first.user.name
       _(group.chart_data(Date.current, Date.tomorrow)[:keys]).wont_include @weigh_ins.last.user.name
     end
